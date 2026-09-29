@@ -4,13 +4,33 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/option-a-market-day", "destination": "/", "permanent": true },
-    { "source": "/option-a-market-day.html", "destination": "/", "permanent": true }
+    { "source": "/option-a-market-day.html", "destination": "/", "permanent": true },
+    { "source": "/:page(shop|cart|checkout|about|contact|our-mission|blog|hello-world|payment-confirmation|payment-failed|elementor-328|elementor-359)", "destination": "/", "permanent": true },
+    { "source": "/:section(product|my-account|category|metform-form)/:rest*", "destination": "/", "permanent": true },
+    { "source": "/:page(terms-condition|privacy-policy)", "destination": "/", "permanent": false }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive, noimageindex" }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000" }
+      ]
+    },
+    {
+      "source": "/assets/fonts/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     }
   ]
