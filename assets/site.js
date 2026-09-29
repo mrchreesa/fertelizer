@@ -10,14 +10,6 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && !nav.hidden) { setMenu(false); btn.focus(); }
   });
-  var checkout = document.getElementById('order-information');
-  document.querySelectorAll('[data-buy]').forEach(function (button) {
-    button.addEventListener('click', function () {
-      document.getElementById('checkout-title').textContent = 'Envirolizer ' + button.dataset.buy + ' kg';
-      document.getElementById('checkout-price').textContent = '£' + button.dataset.price + ' · Includes VAT and P&P';
-      checkout.showModal();
-    });
-  });
   function revealTarget() {
     var target = document.getElementById(location.hash.slice(1));
     if (target && target.tagName === 'DETAILS') target.open = true;

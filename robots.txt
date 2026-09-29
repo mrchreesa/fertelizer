@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /
 
-Sitemap: https://commonwealthcentral.net/sitemap.xml
+Sitemap: https://commonwealthcentral.co.uk/sitemap.xml
