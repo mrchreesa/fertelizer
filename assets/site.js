@@ -17,10 +17,11 @@
   window.addEventListener('hashchange', revealTarget);
   revealTarget();
 
-  // Vercel Web Analytics (cookieless). Calls queue until /_vercel/insights/script.js loads.
-  // Custom events are recorded on Vercel Pro; page views work on every plan.
+  // Optional Vercel custom events follow the shared installer privacy state.
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  function track(name, data) { window.va('event', { name: name, data: data }); }
+  function track(name, data) {
+    if (window.WebM8Privacy && window.WebM8Privacy.isAllowed()) window.va('event', { name: name, data: data });
+  }
   document.addEventListener('click', function (e) {
     var el = e.target.closest('[data-buy], a[href^="mailto:"], a[href^="tel:"]');
     if (!el) return;

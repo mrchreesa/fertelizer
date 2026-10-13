@@ -7,7 +7,8 @@
     { "source": "/option-a-market-day.html", "destination": "/", "permanent": true },
     { "source": "/:page(shop|cart|checkout|about|contact|our-mission|blog|hello-world|payment-confirmation|payment-failed|elementor-328|elementor-359)", "destination": "/", "permanent": true },
     { "source": "/:section(product|my-account|category|metform-form)/:rest*", "destination": "/", "permanent": true },
-    { "source": "/:page(terms-condition|privacy-policy)", "destination": "/", "permanent": false }
+    { "source": "/terms-condition", "destination": "/consumer-terms", "permanent": true },
+    { "source": "/privacy-policy", "destination": "/", "permanent": false }
   ],
   "headers": [
     {
@@ -19,7 +20,7 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' https://webm8-platform.vercel.app; style-src 'self' https://webm8-platform.vercel.app 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://webm8-platform.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' https://webm8-platform.vercel.app; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://webm8-platform.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
