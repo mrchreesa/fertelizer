@@ -47,7 +47,14 @@
         body: JSON.stringify({ sku })
       });
       const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Unable to prepare checkout.");
+      if (!response.ok) {
+        const diag = data && data.diagnostic;
+        const detail = diag
+          ? [diag.type, diag.code, diag.parameter, diag.details].filter(Boolean).join(" | ")
+          : "";
+        throw new Error((data.error || "Unable to prepare checkout.") +
+          (detail ? " Test diagnostic: " + detail : ""));
+      }
       if (!data.clientSecret || !data.publishableKey || !Number.isInteger(data.amountTotal)) {
         throw new Error("The payment service returned an incomplete response.");
       }
