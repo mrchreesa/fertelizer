@@ -82,3 +82,20 @@ a{color:#0e4a2f}.page-width{width:min(1100px,calc(100% - 40px));margin-inline:au
 @media(max-width:380px){
  .card-brand{width:42px;height:28px}
 }
+
+/* UK delivery address: native Stripe form displays full fields, not address search. */
+.contact-shipping-section .address-subheading {
+  border-top:1px solid #e7ebe4;
+  padding-top:14px;
+  margin:14px 0 10px;
+  color:#0e4a2f;
+  font-size:15px;
+  font-weight:750;
+}
+.contact-shipping-section #contact-element{margin-bottom:0}
+.contact-shipping-section #shipping-element{border:0;padding-top:0}
+.address-preview-label{display:block;margin:0 0 5px;font-size:13px;font-weight:600;color:#293d30}
+.address-preview-input{display:block;box-sizing:border-box;width:100%;min-height:45px;padding:10px 12px;margin:0 0 12px;border:1px solid #cbd5cd;border-radius:7px;background:#fff;color:#203529;font:inherit;font-size:15px;opacity:1}
+.address-preview-input::placeholder{color:#8c9890;opacity:1}
+.preview-address-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:440px){.preview-address-row{grid-template-columns:1fr;gap:0}}
