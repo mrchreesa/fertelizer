@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Secure checkout | Commonwealth Central</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/checkout.css">
+<script src="https://js.stripe.com/v3/"></script>
+<script defer src="/assets/checkout.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="page-width header-row">
+    <a class="brand" href="/" aria-label="Commonwealth Central homepage">
+      <img src="/assets/logo-128.webp" width="56" height="56" alt="">
+      <span>Commonwealth Central<small>Secure checkout</small></span>
+    </a>
+    <a class="back" href="/#sizes">← Back to shop</a>
+  </div>
+</header>
+<div class="gold-stripe"></div>
+<main class="page-width checkout-layout">
+  <section class="checkout-main" aria-labelledby="title">
+    <p class="eyebrow">SECURE PAYMENT</p>
+    <h1 id="title">Complete your order</h1>
+    <p class="intro">Card payment is shown first. You can choose another payment method below.</p>
+    <div class="notice" id="status" role="status" aria-live="polite">Preparing your secure payment form…</div>
+    <div id="checkout-fields" hidden>
+      <section class="form-section">
+        <h2>Contact details</h2>
+        <div id="contact-element"></div>
+      </section>
+      <section class="form-section">
+        <h2>Shipping information</h2>
+        <p class="helper">UK delivery only. VAT, postage and packing are included.</p>
+        <div id="shipping-element"></div>
+      </section>
+      <section class="form-section">
+        <h2>Payment method</h2>
+        <p class="helper">Choose a credit or debit card, or one of the available alternatives.</p>
+        <form id="payment-form">
+          <div id="payment-element"></div>
+          <label class="terms"><input type="checkbox" id="terms" required><span>I agree to the <a href="/consumer-terms.html" target="_blank" rel="noopener">Consumer Terms</a>.</span></label>
+          <button class="pay-btn" id="pay-button" type="submit" disabled>Pay securely</button>
+          <div id="payment-error" role="alert" aria-live="assertive" hidden></div>
+        </form>
+      </section>
+      <section id="wallet-section" class="form-section" hidden>
+        <h2>Or pay with a wallet</h2>
+        <p class="helper">Only payment options supported by your device will appear.</p>
+        <div id="express-element"></div>
+      </section>
+    </div>
+  </section>
+  <aside class="summary" aria-labelledby="summary-title">
+    <h2 id="summary-title">Order summary</h2>
+    <div class="product">
+      <img id="product-image" src="/assets/envirolizer-1kg.png" width="92" height="92" alt="Envirolizer bag">
+      <div><strong id="product-name">Envirolizer</strong><p>Quantity: 1</p></div>
+    </div>
+    <div class="summary-row"><span>Product (VAT included)</span><strong id="subtotal">—</strong></div>
+    <div class="summary-row"><span>Postage and packing</span><strong>Included</strong></div>
+    <div class="summary-row total"><span>Total</span><strong id="total">—</strong></div>
+    <p class="summary-note">Sold by CTI EXPO LTD. This checkout is securely processed by Stripe. Pallet and container orders require a separate freight quote.</p>
+  </aside>
+</main>
+<footer class="footer"><div class="page-width"><span>© 2026 CTI EXPO LTD</span><span><a href="/consumer-terms.html">Consumer Terms</a> · <a href="mailto:info@commonwealthcentral.co.uk">Contact us</a></span></div></footer>
+</body>
+</html>
