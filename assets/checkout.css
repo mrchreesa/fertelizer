@@ -99,3 +99,7 @@ a{color:#0e4a2f}.page-width{width:min(1100px,calc(100% - 40px));margin-inline:au
 .address-preview-input::placeholder{color:#8c9890;opacity:1}
 .preview-address-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:440px){.preview-address-row{grid-template-columns:1fr;gap:0}}
+
+/* Isolated public sandbox checkout: no real funds can be collected. */
+.test-mode-banner{border:1px solid #e0c379;background:#fff3cd;color:#573c11;font-size:14px;padding:12px 14px;margin:0 0 15px}
+.test-mode-banner strong{font-weight:800}
