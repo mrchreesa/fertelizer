@@ -1,0 +1,21 @@
+name: Checkout checks
+on:
+  push:
+    branches: [main, feature/stripe-card-first-checkout]
+  pull_request:
+    branches: [main]
+jobs:
+  checkout:
+    name: Validate checkout safely
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Test prices, payment gating and checkout markup
+        run: node --test tests/*.test.js
+      - name: Validate browser-side syntax
+        run: node --check assets/checkout.js && node --check assets/site.js
