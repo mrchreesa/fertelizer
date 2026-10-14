@@ -22,8 +22,9 @@ test("real checkout mounts the native Shipping Address Element in its single add
   assert.ok(shippingPanel, "Contact and shipping must remain one panel");
   assert.match(shippingPanel[0], /id="contact-element"/);
   assert.match(shippingPanel[0], /id="shipping-element"/);
-  assert.match(shippingPanel[0], /full name, house number and street, town\/city and postcode/);
-  assert.match(stripeClient, /checkout\.createShippingAddressElement\(\)\.mount\("#shipping-element"\)/);
+  assert.match(shippingPanel[0], /<h3 class="address-subheading">Delivery address<\/h3>/);
+  assert.doesNotMatch(shippingPanel[0], /UK delivery: full name/);
+  assert.match(stripeClient, /checkout\.createShippingAddressElement\(\{[\s\S]*?autocomplete:\s*\{\s*mode:\s*"disabled"\s*\}/);
   assert.match(stripeClient, /checkout\.createContactDetailsElement\(\)\.mount\("#contact-element"\)/);
   assert.match(stripeClient, /actions\.confirm\(\)/);
   assert.ok(!shippingPanel[0].includes('type="text"'), "Don't duplicate Stripe's editable address fields");
@@ -36,6 +37,10 @@ test("non-payment preview shows every essential UK delivery field", () => {
     "Address line 2 (optional)", "Town / city", "UK postcode", "Country", "United Kingdom"]) {
     assert.ok(panel[0].includes(label), "Missing label: " + label);
   }
-  assert.match(panel[0], /Flat, apartment, unit or building name/);
-  assert.doesNotMatch(preview, /<input\b|<form\b|js\.stripe\.com/i, "Visual preview must never accept card payments");
+  assert.match(panel[0], /Flat, apartment or unit/);
+  const inputTags = panel[0].match(/<input\b[^>]*>/g) || [];
+  assert.equal(inputTags.length, 7, "Preview should show seven separate UK contact/address inputs");
+  assert.ok(inputTags.every(input => /\sdisabled(?:\s|>)/.test(input)), "Preview inputs must be disabled");
+  assert.match(panel[0], /<select\b[^>]*disabled[^>]*>/);
+  assert.doesNotMatch(preview, /<form\b|js\.stripe\.com/i, "Visual preview must never process payments");
 });
