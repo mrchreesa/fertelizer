@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Test payment result | Commonwealth Central</title>
+<link rel="stylesheet" href="/assets/checkout.css">
+</head>
+<body>
+<header class="site-header"><div class="page-width header-row"><a class="brand" href="/"><img src="/assets/logo-128.webp" width="56" height="56" alt=""><span>Commonwealth Central<small>Test checkout</small></span></a></div></header>
+<div class="gold-stripe"></div>
+<main class="page-width" style="max-width:690px;padding:90px 0 120px">
+  <p class="eyebrow">TEST PAYMENT STATUS</p><h1 id="heading">Checking your order…</h1>
+  <p id="message" role="status" aria-live="polite">Verifying your test payment. No real funds are transferred.</p>
+  <p id="retry" hidden><a href="/checkout-test?sku=1kg">Return to test checkout</a></p>
+  <p><a class="back" style="color:#0e4a2f" href="/">← Commonwealth Central</a></p>
+</main>
+<footer class="footer"><div class="page-width">© 2026 CTI EXPO LTD</div></footer>
+<script>
+(async function(){
+  const h=document.getElementById("heading"), m=document.getElementById("message"), r=document.getElementById("retry");
+  const id=new URLSearchParams(location.search).get("session_id");
+  if(!id){h.textContent="Missing order reference";m.textContent="Please contact us if a payment has already been taken.";r.hidden=false;return;}
+  try{
+    const res=await fetch("/api/test-session-status?session_id="+encodeURIComponent(id),{cache:"no-store"});
+    const data=await res.json();if(!res.ok)throw Error("Unable to verify your payment at the moment.");
+    if(data.paymentStatus==="paid"){h.textContent="Test payment successful";m.textContent="Stripe recorded the test transaction successfully. No money has been taken, and no physical order will be shipped.";}
+    else if(data.status==="open"){h.textContent="Test payment was not completed";m.textContent="No successful test transaction was found. You may try again.";r.hidden=false;}
+    else{h.textContent="Test payment awaiting confirmation";m.textContent="The test transaction is still pending. Do not interpret this as a successful payment.";}
+  }catch(_){h.textContent="Unable to verify the test payment";m.textContent="Please contact the website administrator to check Stripe test transactions. No real money is at risk.";}
+})();
+</script>
+</body></html>
