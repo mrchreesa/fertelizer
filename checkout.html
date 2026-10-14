@@ -25,7 +25,7 @@
   <section class="checkout-main" aria-labelledby="title">
     <p class="eyebrow">SECURE PAYMENT</p>
     <h1 id="title">Complete your order</h1>
-    <p class="intro">Card payment is shown first. You can choose another payment method below.</p>
+    <p class="intro">Secure card payment is the default. Additional payment options are available further down where supported.</p>
     <div class="notice" id="status" role="status" aria-live="polite">Preparing your secure payment form…</div>
     <div id="checkout-fields" hidden>
       <section class="form-section">
@@ -39,7 +39,17 @@
       </section>
       <section class="form-section">
         <h2>Payment method</h2>
-        <p class="helper">Choose a credit or debit card, or one of the available alternatives.</p>
+        <p class="helper">Pay by card first, or select a different available method below.</p>
+        <div class="card-brand-display" aria-labelledby="card-brand-title">
+          <h3 id="card-brand-title">Credit or debit card</h3>
+          <div class="card-brands" role="list" aria-label="Common card networks">
+            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/visa.svg" width="120" height="80" alt="Visa"></span>
+            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/mastercard.svg" width="120" height="80" alt="Mastercard"></span>
+            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/amex.svg" width="120" height="80" alt="American Express"></span>
+            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/maestro.svg" width="120" height="80" alt="Maestro, where supported"></span>
+          </div>
+          <p class="card-brands-note">Available card networks depend on issuer and payment eligibility. Some older Maestro cards cannot be used online.</p>
+        </div>
         <form id="payment-form">
           <div id="payment-element"></div>
           <label class="terms"><input type="checkbox" id="terms" required><span>I agree to the <a href="/consumer-terms.html" target="_blank" rel="noopener">Consumer Terms</a>.</span></label>
@@ -48,8 +58,8 @@
         </form>
       </section>
       <section id="wallet-section" class="form-section" hidden>
-        <h2>Or pay with a wallet</h2>
-        <p class="helper">Only payment options supported by your device will appear.</p>
+        <h2>More ways to pay</h2>
+        <p class="helper">Apple Pay and other eligible wallet options appear here on supported devices. Klarna and Revolut Pay may appear underneath the card fields above.</p>
         <div id="express-element"></div>
       </section>
     </div>
@@ -66,6 +76,6 @@
     <p class="summary-note">Sold by CTI EXPO LTD. This checkout is securely processed by Stripe. Pallet and container orders require a separate freight quote.</p>
   </aside>
 </main>
-<footer class="footer"><div class="page-width"><span>© 2026 CTI EXPO LTD</span><span><a href="/consumer-terms.html">Consumer Terms</a> · <a href="mailto:info@commonwealthcentral.co.uk">Contact us</a></span></div></footer>
+<footer class="footer"><div class="page-width"><span>© 2026 CTI EXPO LTD</span><span><a href="/consumer-terms.html">Consumer Terms</a> · <a href="mailto:info@commonwealthcentral.co.uk">Contact us</a></span></div><div class="page-width brand-attribution">Payment-network icon artwork by <a href="https://github.com/datatrans/payment-logos" target="_blank" rel="noopener noreferrer">Datatrans</a> (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>). Network trademarks belong to their respective owners.</div></footer>
 </body>
 </html>
