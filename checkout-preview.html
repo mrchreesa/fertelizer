@@ -26,19 +26,33 @@
 
     <section class="form-section contact-shipping-section" aria-labelledby="contact-shipping-title">
       <h2 id="contact-shipping-title">Contact &amp; shipping details</h2>
-      <p class="helper">UK delivery only. Stripe validates the address before payment.</p>
-      <div class="preview-fields-grid">
-        <div class="preview-field"><span class="preview-label">Email address</span><span class="preview-ghost">you@example.com</span></div>
-        <div class="preview-field"><span class="preview-label">Contact phone number</span><span class="preview-ghost">07xxx xxxxxx</span></div>
+      <div class="preview-contact-inputs">
+        <label class="address-preview-label" for="preview-email">Email address <span aria-hidden="true">*</span></label>
+        <input id="preview-email" type="email" placeholder="email@example.com" disabled aria-disabled="true" autocomplete="off" class="address-preview-input">
+        <label class="address-preview-label" for="preview-phone">Phone number <span aria-hidden="true">*</span></label>
+        <input id="preview-phone" type="tel" placeholder="07xxx xxxxxx" disabled aria-disabled="true" autocomplete="off" class="address-preview-input">
       </div>
-      <div class="preview-field"><span class="preview-label">Recipient full name</span><span class="preview-ghost">First and last name</span></div>
-      <div class="preview-field"><span class="preview-label">Address line 1</span><span class="preview-ghost">House or building number and street</span></div>
-      <div class="preview-field"><span class="preview-label">Address line 2 (optional)</span><span class="preview-ghost">Flat, apartment, unit or building name</span></div>
-      <div class="preview-fields-grid">
-        <div class="preview-field"><span class="preview-label">Town / city</span><span class="preview-ghost">Town or city</span></div>
-        <div class="preview-field"><span class="preview-label">UK postcode</span><span class="preview-ghost">e.g. SW1A 1AA</span></div>
+      <h3 class="address-subheading">Delivery address</h3>
+      <div class="preview-address-fields">
+        <label class="address-preview-label" for="preview-name">Recipient full name <span aria-hidden="true">*</span></label>
+        <input id="preview-name" type="text" placeholder="First and last name" disabled aria-disabled="true" autocomplete="off" class="address-preview-input">
+        <label class="address-preview-label" for="preview-line1">Address line 1 <span aria-hidden="true">*</span></label>
+        <input id="preview-line1" type="text" placeholder="House/building number and street" disabled aria-disabled="true" autocomplete="off" class="address-preview-input">
+        <label class="address-preview-label" for="preview-line2">Address line 2 (optional)</label>
+        <input id="preview-line2" type="text" placeholder="Flat, apartment or unit" disabled aria-disabled="true" autocomplete="off" class="address-preview-input">
+      <div class="preview-address-row">
+        <div>
+        <label class="address-preview-label" for="preview-city">Town / city <span aria-hidden="true">*</span></label>
+        <input id="preview-city" type="text" placeholder="Town or city" disabled aria-disabled="true" autocomplete="off" class="address-preview-input">
+        </div>
+        <div>
+        <label class="address-preview-label" for="preview-postcode">UK postcode <span aria-hidden="true">*</span></label>
+        <input id="preview-postcode" type="text" placeholder="SW1A 1AA" disabled aria-disabled="true" autocomplete="off" class="address-preview-input">
+        </div>
       </div>
-      <div class="preview-field"><span class="preview-label">Country</span><span>United Kingdom</span></div>
+      <label class="address-preview-label" for="preview-country">Country</label>
+      <select id="preview-country" disabled aria-disabled="true" class="address-preview-input"><option>United Kingdom</option></select>
+      </div>
     </section>
 
     <section class="form-section" aria-labelledby="payment-title">
