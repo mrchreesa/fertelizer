@@ -14,3 +14,5 @@
 !lib
 !package.json
 !checkout-preview.html
+!checkout-test.html
+!checkout-test-result.html
