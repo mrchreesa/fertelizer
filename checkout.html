@@ -25,31 +25,24 @@
   <section class="checkout-main" aria-labelledby="title">
     <p class="eyebrow">SECURE PAYMENT</p>
     <h1 id="title">Complete your order</h1>
-    <p class="intro">Secure card payment is the default. Additional payment options are available further down where supported.</p>
     <div class="notice" id="status" role="status" aria-live="polite">Preparing your secure payment form…</div>
     <p id="fallback-wrap" class="fallback-wrap" hidden>If the new checkout is unavailable, <a id="fallback-link" href="/#sizes">continue with our existing secure Stripe checkout</a>.</p>
     <div id="checkout-fields" hidden>
-      <section class="form-section">
-        <h2>Contact details</h2>
+      <section class="form-section contact-shipping-section" aria-labelledby="contact-shipping-title">
+        <h2 id="contact-shipping-title">Contact &amp; shipping details</h2>
+        <p class="helper">UK delivery only. VAT and postage included.</p>
         <div id="contact-element"></div>
-      </section>
-      <section class="form-section">
-        <h2>Shipping information</h2>
-        <p class="helper">UK delivery only. VAT, postage and packing are included.</p>
         <div id="shipping-element"></div>
       </section>
       <section class="form-section">
-        <h2>Payment method</h2>
-        <p class="helper">Pay by card first, or select a different available method below.</p>
-        <div class="card-brand-display" aria-labelledby="card-brand-title">
-          <h3 id="card-brand-title">Credit or debit card</h3>
-          <div class="card-brands" role="list" aria-label="Common card networks">
-            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/visa.svg" width="120" height="80" alt="Visa"></span>
-            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/mastercard.svg" width="120" height="80" alt="Mastercard"></span>
-            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/amex.svg" width="120" height="80" alt="American Express"></span>
-            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/maestro.svg" width="120" height="80" alt="Maestro, where supported"></span>
+        <div class="payment-heading">
+          <h2>Payment method</h2>
+          <div class="card-brands" role="list" aria-label="Card networks, subject to eligibility">
+            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/visa.svg" width="52" height="34" alt="Visa"></span>
+            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/mastercard.svg" width="52" height="34" alt="Mastercard"></span>
+            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/amex.svg" width="52" height="34" alt="American Express"></span>
+            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/maestro.svg" width="52" height="34" alt="Maestro, where supported"></span>
           </div>
-          <p class="card-brands-note">Available card networks depend on issuer and payment eligibility. Some older Maestro cards cannot be used online.</p>
         </div>
         <form id="payment-form">
           <div id="payment-element"></div>
