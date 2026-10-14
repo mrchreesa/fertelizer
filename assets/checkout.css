@@ -1,0 +1,27 @@
+@font-face{font-family:Atkinson;src:url('/assets/fonts/atkinson-next-latin.woff2') format('woff2');font-display:swap;font-weight:200 800}
+*{box-sizing:border-box}body{margin:0;background:#fcf4e0;color:#141d17;font:17px/1.5 Atkinson,Arial,sans-serif}button,input{font:inherit}
+a{color:#0e4a2f}.page-width{width:min(1100px,calc(100% - 40px));margin-inline:auto}
+.site-header{background:#0e4a2f;color:white}.header-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0}.brand{display:flex;gap:12px;align-items:center;color:white;text-decoration:none;font-weight:800;font-size:18px}.brand img{object-fit:contain}.brand small{display:block;font-weight:600;color:#f2b230;font-size:13px}.back{color:white;font-weight:650;font-size:15px}.gold-stripe{height:6px;background:#f2b230}
+.checkout-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(290px,.75fr);gap:54px;padding-top:54px;padding-bottom:80px;align-items:start}
+.eyebrow{letter-spacing:.13em;font-size:13px;font-weight:800;color:#0e4a2f;margin:0 0 10px}h1{font-size:clamp(30px,4vw,42px);line-height:1.15;margin:0 0 14px}h2{font-size:22px;line-height:1.3;margin:0 0 18px}.intro{color:#4a554d;margin:0 0 28px}.form-section{background:#fff;padding:26px;border:1px solid #d8dccf;border-radius:12px;margin:0 0 20px;box-shadow:0 4px 12px #00220d08}.helper{color:#5c675f;font-size:14px;margin:-10px 0 16px}.notice{padding:16px;border-radius:8px;background:#e9f0e7;color:#194227;margin-bottom:20px}.notice:empty{display:none}.notice.error{background:#ffe6e2;color:#9c2119}#payment-error{margin-top:12px;padding:12px;border-radius:6px;background:#ffe6e2;color:#9c2119;font-size:15px}.terms{display:flex;gap:12px;align-items:flex-start;font-size:14px;margin:26px 0}.terms input{margin-top:4px;accent-color:#0e4a2f}.pay-btn{width:100%;min-height:53px;border:0;background:#0e4a2f;color:white;border-radius:7px;font-weight:800;cursor:pointer}.pay-btn:disabled{opacity:.6;cursor:not-allowed}.pay-btn:not(:disabled):hover{background:#083a23}.summary{position:sticky;top:24px;background:white;padding:28px;border:1px solid #d8dccf;border-radius:12px}.summary .product{display:flex;align-items:center;gap:16px;padding:0 0 20px;border-bottom:1px solid #deded5}.product img{width:90px;height:95px;object-fit:contain}.product p{font-size:14px;margin:4px 0;color:#59635d}.summary-row{display:flex;justify-content:space-between;gap:15px;margin:20px 0 0;font-size:15px}.summary-row.total{border-top:1px solid #deded5;padding-top:18px;margin-top:20px;font-size:20px}.summary-note{border-top:1px solid #deded5;margin:22px 0 0;padding-top:18px;color:#59635d;font-size:13px}.footer{background:#0e4a2f;color:white;padding:23px 0}.footer>div{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px}.footer a{color:#fff}
+@media(max-width:760px){.checkout-layout{display:flex;flex-direction:column;gap:18px;padding-top:32px;padding-bottom:45px}.checkout-main,.summary{width:100%}.summary{position:static;order:-1}.form-section{padding:20px}.header-row{padding:12px 0}.brand{font-size:15px}.brand img{width:42px;height:42px}.back{font-size:13px}.page-width{width:min(100% - 26px,1100px)}}
+
+/* Large, clearly labelled card-brand artwork above Stripe-hosted card inputs. */
+.card-brand-display{margin:0 0 24px;padding:18px;border-radius:12px;border:1px solid #d9e5d6;background:#f8fbf7}
+.card-brand-display h3{font-size:16px;font-weight:800;margin:0 0 13px;color:#214d32}
+.card-brands{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.card-brand{border:1px solid #d7dcd5;border-radius:9px;background:#fff;overflow:hidden;min-width:0;box-shadow:0 2px 4px #0019090a}
+.card-brand img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain}
+.card-brands-note{margin:12px 0 0;color:#626f63;font-size:12px;line-height:1.4}
+.brand-attribution{font-size:11px!important;color:#d5e3d9;margin-top:12px!important;line-height:1.4}
+.brand-attribution a{color:#e9f4e8}
+@media(max-width:500px){
+ .card-brand-display{padding:12px}
+ .card-brands{gap:7px}
+ .card-brand{border-radius:6px}
+ .card-brands-note{font-size:11px}
+}
+
+.fallback-wrap{padding:14px 16px;margin:-10px 0 20px;border-radius:8px;border:1px solid #e3c794;background:#fff6df;font-size:14px}
+.fallback-wrap a{font-weight:800}
+.wallet-error{margin:14px 0 0;color:#9c2119;background:#ffe6e2;padding:12px;border-radius:7px;font-size:14px}

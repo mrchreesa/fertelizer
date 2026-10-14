@@ -8,3 +8,8 @@
 !robots.txt
 !sitemap.xml
 !vercel.json
+!checkout.html
+!checkout-result.html
+!api
+!lib
+!package.json
