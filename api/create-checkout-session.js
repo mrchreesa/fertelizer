@@ -52,7 +52,7 @@ module.exports = async function createCheckoutSession(req, res) {
   }
 
   try {
-    const stripe = new Stripe(secret, { maxNetworkRetries: 1 });
+    const stripe = new Stripe(secret, { apiVersion: "2026-03-25.dahlia", maxNetworkRetries: 1 });
     const session = await stripe.checkout.sessions.create({
       ui_mode: "elements",
       mode: "payment",
