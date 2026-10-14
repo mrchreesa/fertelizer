@@ -3,18 +3,23 @@
 
   const sku = new URLSearchParams(window.location.search).get("sku");
   const catalogue = {
-    "1kg": { label: "Envirolizer 1 kg bag", image: "/assets/envirolizer-1kg.png" },
-    "20kg": { label: "Envirolizer 20 kg bag", image: "/assets/envirolizer-20kg.png" }
+    "1kg": { label: "Envirolizer 1 kg bag", image: "/assets/envirolizer-1kg.png", fallback: "https://buy.stripe.com/4gMbJ04fhbq80cB1OZfQI00" },
+    "20kg": { label: "Envirolizer 20 kg bag", image: "/assets/envirolizer-20kg.png", fallback: "https://buy.stripe.com/5kQbJ08vxgKs9Nb51bfQI01" }
   };
   const $ = (id) => document.getElementById(id);
   const status = $("status");
   const paymentError = $("payment-error");
   let busy = false;
 
-  function fail(message) {
+  function fail(message, showFallback = true) {
     status.hidden = false;
     status.classList.add("error");
     status.textContent = message;
+    const backup = catalogue[sku] && catalogue[sku].fallback;
+    if (showFallback && backup) {
+      $("fallback-link").href = backup;
+      $("fallback-wrap").hidden = false;
+    }
   }
   function formatGBP(pence) {
     return new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(pence / 100);
@@ -87,9 +92,13 @@
       });
       expressElement.on("confirm", async () => {
         if (!$("terms").checked) {
-          fail("Please accept the Consumer Terms before using a wallet.");
+          const notice = $("wallet-error");
+          notice.textContent = "Please accept the Consumer Terms before paying.";
+          notice.hidden = false;
+          $("terms").focus();
           return;
         }
+        $("wallet-error").hidden = true;
         const result = await checkout.loadActions();
         if (result.type === "error") {
           fail(result.error.message || "Unable to confirm payment.");
