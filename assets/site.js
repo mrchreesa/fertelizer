@@ -29,4 +29,29 @@
     else if (el.getAttribute('href').indexOf('mailto:') === 0) track(/quote/i.test(el.getAttribute('href')) ? 'Freight quote click' : 'Email click', {});
     else track('Call click', {});
   });
+  // Progressive activation: purchase links stay on the verified hosted Stripe checkout
+  // until the custom checkout is explicitly enabled on production.
+  async function useCustomCheckoutWhenReady() {
+    var links = document.querySelectorAll('a[data-buy]');
+    if (!links.length) return;
+    try {
+      var response = await fetch('/api/checkout-readiness', {
+        method: 'GET', cache: 'no-store', credentials: 'same-origin'
+      });
+      if (!response.ok) return;
+      var status = await response.json();
+      if (!status || status.enabled !== true) return;
+      links.forEach(function (link) {
+        var sku = link.getAttribute('data-buy') === '1' ? '1kg' :
+                  link.getAttribute('data-buy') === '20' ? '20kg' : null;
+        if (sku) {
+          link.setAttribute('data-stripe-fallback', link.href);
+          link.href = '/checkout?sku=' + sku;
+        }
+      });
+    } catch (_) {
+      // Never break an existing purchasing route on a network error.
+    }
+  }
+  useCustomCheckoutWhenReady();
 })();
