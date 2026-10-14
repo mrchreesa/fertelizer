@@ -27,6 +27,7 @@
     <h1 id="title">Complete your order</h1>
     <p class="intro">Secure card payment is the default. Additional payment options are available further down where supported.</p>
     <div class="notice" id="status" role="status" aria-live="polite">Preparing your secure payment form…</div>
+    <p id="fallback-wrap" class="fallback-wrap" hidden>If the new checkout is unavailable, <a id="fallback-link" href="/#sizes">continue with our existing secure Stripe checkout</a>.</p>
     <div id="checkout-fields" hidden>
       <section class="form-section">
         <h2>Contact details</h2>
@@ -61,6 +62,7 @@
         <h2>More ways to pay</h2>
         <p class="helper">Apple Pay and other eligible wallet options appear here on supported devices. Klarna and Revolut Pay may appear underneath the card fields above.</p>
         <div id="express-element"></div>
+        <p id="wallet-error" class="wallet-error" role="alert" hidden></p>
       </section>
     </div>
   </section>
