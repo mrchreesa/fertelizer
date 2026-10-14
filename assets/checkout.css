@@ -21,3 +21,7 @@ a{color:#0e4a2f}.page-width{width:min(1100px,calc(100% - 40px));margin-inline:au
  .card-brand{border-radius:6px}
  .card-brands-note{font-size:11px}
 }
+
+.fallback-wrap{padding:14px 16px;margin:-10px 0 20px;border-radius:8px;border:1px solid #e3c794;background:#fff6df;font-size:14px}
+.fallback-wrap a{font-weight:800}
+.wallet-error{margin:14px 0 0;color:#9c2119;background:#ffe6e2;padding:12px;border-radius:7px;font-size:14px}
