@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Stripe test checkout | Commonwealth Central</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/checkout.css">
+<script src="https://js.stripe.com/dahlia/stripe.js"></script>
+<script defer src="/assets/checkout-test.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="page-width header-row">
+    <a class="brand" href="/" aria-label="Commonwealth Central homepage">
+      <img src="/assets/logo-128.webp" width="56" height="56" alt="">
+      <span>Commonwealth Central<small>Test checkout</small></span>
+    </a>
+    <a class="back" href="/#sizes">← Back to shop</a>
+  </div>
+</header>
+<div class="gold-stripe"></div>
+<main class="page-width checkout-layout">
+  <section class="checkout-main" aria-labelledby="title">
+    <p class="eyebrow">STRIPE TEST MODE</p>
+    <h1 id="title">Complete your test order</h1>
+    <div class="notice test-mode-banner" role="note"><strong>Test payment only — no real money is taken.</strong> Use card 4242 4242 4242 4242, expiry 12/30 and CVC 123.</div>
+    <div class="notice" id="status" role="status" aria-live="polite">Preparing the secure test payment form…</div>
+    
+    <div id="checkout-fields" hidden>
+      <section class="form-section contact-shipping-section" aria-labelledby="contact-shipping-title">
+        <h2 id="contact-shipping-title">Contact &amp; shipping details</h2>
+        <div id="contact-element"></div>
+        <h3 class="address-subheading">Delivery address</h3>
+        <div id="shipping-element"></div>
+      </section>
+      <section class="form-section">
+        <div class="payment-heading">
+          <h2>Payment method</h2>
+          <div class="card-brands" role="list" aria-label="Card networks, subject to eligibility">
+            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/visa.svg" width="52" height="34" alt="Visa"></span>
+            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/mastercard.svg" width="52" height="34" alt="Mastercard"></span>
+            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/amex.svg" width="52" height="34" alt="American Express"></span>
+            <span class="card-brand" role="listitem"><img src="/assets/payment-cards/maestro.svg" width="52" height="34" alt="Maestro, where supported"></span>
+          </div>
+        </div>
+        <form id="payment-form">
+          <div id="payment-element"></div>
+          <label class="terms"><input type="checkbox" id="terms" required><span>I agree to the <a href="/consumer-terms.html" target="_blank" rel="noopener">Consumer Terms</a>.</span></label>
+          <button class="pay-btn" id="pay-button" type="submit" disabled>Complete test payment</button>
+          <div id="payment-error" role="alert" aria-live="assertive" hidden></div>
+        </form>
+      </section>
+      <section id="wallet-section" class="form-section" hidden>
+        <h2>More ways to pay</h2>
+        <p class="helper">Apple Pay and other eligible wallet options appear here on supported devices. Klarna and Revolut Pay may appear underneath the card fields above.</p>
+        <div id="express-element"></div>
+        <p id="wallet-error" class="wallet-error" role="alert" hidden></p>
+      </section>
+    </div>
+  </section>
+  <aside class="summary" aria-labelledby="summary-title">
+    <h2 id="summary-title">Order summary</h2>
+    <div class="product">
+      <img id="product-image" src="/assets/envirolizer-1kg.png" width="92" height="92" alt="Envirolizer bag">
+      <div><strong id="product-name">Envirolizer</strong><p>Quantity: 1</p></div>
+    </div>
+    <div class="summary-row"><span>Product (VAT included)</span><strong id="subtotal">—</strong></div>
+    <div class="summary-row"><span>Postage and packing</span><strong>Included</strong></div>
+    <div class="summary-row total"><span>Total</span><strong id="total">—</strong></div>
+    <p class="summary-note">Test transaction for CTI EXPO LTD. No actual charge is made and no goods are dispatched.</p>
+  </aside>
+</main>
+<footer class="footer"><div class="page-width"><span>© 2026 CTI EXPO LTD</span><span><a href="/consumer-terms.html">Consumer Terms</a> · <a href="mailto:info@commonwealthcentral.co.uk">Contact us</a></span></div><div class="page-width brand-attribution">Payment-network icon artwork by <a href="https://github.com/datatrans/payment-logos" target="_blank" rel="noopener noreferrer">Datatrans</a> (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>). Network trademarks belong to their respective owners.</div></footer>
+</body>
+</html>
