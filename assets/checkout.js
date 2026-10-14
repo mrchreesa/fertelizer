@@ -79,7 +79,10 @@
       });
 
       checkout.createContactDetailsElement().mount("#contact-element");
-      checkout.createShippingAddressElement().mount("#shipping-element");
+      // Show manual full UK address fields without an address-search prerequisite.
+      checkout.createShippingAddressElement({
+        autocomplete: { mode: "disabled" }
+      }).mount("#shipping-element");
 
       const paymentElement = checkout.createPaymentElement({
         layout: { type: "accordion", defaultCollapsed: false },
