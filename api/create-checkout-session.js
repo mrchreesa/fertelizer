@@ -28,11 +28,16 @@ module.exports = async function createCheckoutSession(req, res) {
   const isLive = secret.startsWith("sk_live_");
   const isTest = secret.startsWith("sk_test_");
 
-  // Explicit approval is required to enable live payments after testing.
-  if (!((isLive && publishableKey.startsWith("pk_live_")) ||
-        (isTest && publishableKey.startsWith("pk_test_"))) ||
-      (isLive && (process.env.VERCEL_ENV !== "production" ||
-                  process.env.CHECKOUT_ENABLE_LIVE !== "true"))) {
+  // Never permit test payments on the public production domain, or live payments in previews.
+  // The live gate only opens after merchant sign-off and a signed webhook is configured.
+  const production = process.env.VERCEL_ENV === "production";
+  const keyPairMatches = (isLive && publishableKey.startsWith("pk_live_")) ||
+                         (isTest && publishableKey.startsWith("pk_test_"));
+  const webhookReady = /^whsec_/.test(process.env.STRIPE_WEBHOOK_SECRET || "");
+  const liveApproved = process.env.CHECKOUT_ENABLE_LIVE === "true" &&
+                       process.env.CHECKOUT_FULFILLMENT_READY === "true";
+  if (!keyPairMatches || (production && (!isLive || !webhookReady || !liveApproved)) ||
+      (!production && !isTest)) {
     return res.status(503).json({ error: "Checkout is not configured for this environment." });
   }
 
