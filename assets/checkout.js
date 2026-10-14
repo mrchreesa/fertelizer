@@ -72,7 +72,12 @@
       });
 
       checkout.createContactDetailsElement().mount("#contact-element");
-      checkout.createShippingAddressElement().mount("#shipping-element");
+      // Show editable full UK address fields immediately, without an address search
+      // that requires customers to click "Enter address manually".
+      // Stripe retains country-specific validation and saves shipping details on confirmation.
+      checkout.createShippingAddressElement({
+        autocomplete: { mode: "disabled" }
+      }).mount("#shipping-element");
 
       const paymentElement = checkout.createPaymentElement({
         layout: { type: "accordion", defaultCollapsed: false },

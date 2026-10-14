@@ -11,7 +11,10 @@ const ignore = fs.readFileSync(path.join(root, ".vercelignore"), "utf8");
 test("public checkout preview shows branding without collecting card data", () => {
   assert.match(html, /Design preview only/);
   assert.match(html, /Fields below are illustrations and cannot accept payment/);
-  assert.doesNotMatch(html, /<input\b/i);
+  // The illustration contains disabled, non-submitting address inputs only.
+  const previewInputs = html.match(/<input\b[^>]*>/g) || [];
+  assert.equal(previewInputs.length, 7);
+  assert.ok(previewInputs.every(input => /\sdisabled(?:\s|>)/.test(input)));
   assert.doesNotMatch(html, /<form\b/i);
   assert.doesNotMatch(html, /js\.stripe\.com/);
   for (const brand of ["visa", "mastercard", "amex", "maestro"]) {
