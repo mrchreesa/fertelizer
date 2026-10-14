@@ -72,7 +72,32 @@ module.exports = async function createCheckoutSession(req, res) {
       currency: session.currency
     });
   } catch (error) {
-    console.error("Unable to create Stripe checkout session", error.type || error.name || "Error");
-    return res.status(502).json({ error: "Payment setup is temporarily unavailable. Please try again." });
+    // Diagnostic details are returned only for non-production test deployments.
+    // Never return secret keys, unfiltered API responses, or customer data.
+    const knownTypes = new Set([
+      "StripeInvalidRequestError", "StripeAuthenticationError",
+      "StripePermissionError", "StripeRateLimitError",
+      "StripeAPIError", "StripeConnectionError", "StripeIdempotencyError"
+    ]);
+    const type = knownTypes.has(error.type) ? error.type : "CheckoutSetupError";
+    const raw = error.type === "StripeInvalidRequestError" ? String(error.message || "") : "";
+    const safeMessage = raw
+      .replace(/(?:sk|pk|rk)_(?:live|test)_[A-Za-z0-9_-]+/gi, "[redacted API key]")
+      .replace(/whsec_[A-Za-z0-9_-]+/gi, "[redacted webhook secret]")
+      .slice(0, 240);
+    const diagnostic = {
+      type,
+      code: /^[a-z0-9_]{1,64}$/.test(String(error.code || "")) ? error.code : null,
+      parameter: /^[a-z0-9_\[\].]{1,80}$/.test(String(error.param || "")) ? error.param : null,
+      details: safeMessage || null
+    };
+    console.error("Unable to create Stripe checkout session", {
+      type: diagnostic.type, code: diagnostic.code, parameter: diagnostic.parameter,
+      httpStatus: error.statusCode || null, details: diagnostic.details
+    });
+    return res.status(502).json({
+      error: "Payment setup is temporarily unavailable. Please try again.",
+      ...(!production && isTest ? { diagnostic } : {})
+    });
   }
 };
