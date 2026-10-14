@@ -19,7 +19,7 @@ module.exports = async function sessionStatus(req, res) {
   }
 
   try {
-    const stripe = new Stripe(secret, { apiVersion: "2026-07-29.dahlia" });
+    const stripe = new Stripe(secret);
     const session = await stripe.checkout.sessions.retrieve(id);
     if (!session.metadata || session.metadata.site !== "commonwealthcentral" ||
         session.metadata.checkout !== "card_first") {
