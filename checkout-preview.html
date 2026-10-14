@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Checkout design preview | Commonwealth Central</title>
+<meta name="description" content="Preview Commonwealth Central's new card-first checkout design. This page does not accept payments.">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="/assets/checkout.css">
+<script defer src="/assets/checkout-preview.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="page-width header-row">
+    <a class="brand" href="/" aria-label="Commonwealth Central homepage"><img src="/assets/logo-128.webp" width="56" height="56" alt=""><span>Commonwealth Central<small>Checkout design preview</small></span></a>
+    <a class="back" href="/#sizes">← Back to shop</a>
+  </div>
+</header>
+<div class="gold-stripe"></div>
+<main class="page-width checkout-layout">
+  <section class="checkout-main" aria-labelledby="title">
+    <p class="eyebrow">CHECKOUT DESIGN PREVIEW</p>
+    <h1 id="title">Complete your order</h1>
+    <p class="intro">Card payment first. Other payment methods further down.</p>
+    <div class="notice preview-notice" role="status"><strong>Design preview only.</strong> Fields below are illustrations and cannot accept payment. Real purchases still use the existing secure Stripe checkout.</div>
+
+    <section class="form-section" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact details</h2>
+      <div class="preview-field"><span class="preview-label">Email address</span><span class="preview-ghost">you@example.com</span></div>
+    </section>
+
+    <section class="form-section" aria-labelledby="shipping-title">
+      <h2 id="shipping-title">Shipping information</h2>
+      <p class="helper">UK delivery only. VAT, postage and packing are included.</p>
+      <div class="preview-fields-grid">
+        <div class="preview-field"><span class="preview-label">Full name</span><span class="preview-ghost">Your full name</span></div>
+        <div class="preview-field"><span class="preview-label">Postcode</span><span class="preview-ghost">Your postcode</span></div>
+      </div>
+      <div class="preview-field"><span class="preview-label">Delivery address</span><span class="preview-ghost">Street address, town or city, United Kingdom</span></div>
+    </section>
+
+    <section class="form-section" aria-labelledby="payment-title">
+      <h2 id="payment-title">Payment method</h2>
+      <p class="helper">Credit or debit card is shown first, with other methods underneath.</p>
+      <div class="card-brand-display" aria-labelledby="card-brand-title">
+        <h3 id="card-brand-title">Credit or debit card</h3>
+        <div class="card-brands" role="list" aria-label="Common card networks">
+          <span class="card-brand" role="listitem"><img src="/assets/payment-cards/visa.svg" width="120" height="80" alt="Visa"></span>
+          <span class="card-brand" role="listitem"><img src="/assets/payment-cards/mastercard.svg" width="120" height="80" alt="Mastercard"></span>
+          <span class="card-brand" role="listitem"><img src="/assets/payment-cards/amex.svg" width="120" height="80" alt="American Express"></span>
+          <span class="card-brand" role="listitem"><img src="/assets/payment-cards/maestro.svg" width="120" height="80" alt="Maestro, where supported"></span>
+        </div>
+        <p class="card-brands-note">Card acceptance is subject to issuer and network eligibility. Some older Maestro cards cannot be used online.</p>
+      </div>
+      <div class="preview-payment-method preview-payment-method-selected">
+        <div class="preview-payment-head"><span class="preview-radio preview-radio-selected" aria-hidden="true"></span><strong>Card</strong><span class="preview-tiny-label">Selected by default</span></div>
+        <div class="preview-payment-body">
+          <div class="preview-field"><span class="preview-label">Card number</span><span class="preview-ghost">•••• •••• •••• ••••</span></div>
+          <div class="preview-fields-grid">
+            <div class="preview-field"><span class="preview-label">Expiry date</span><span class="preview-ghost">MM / YY</span></div>
+            <div class="preview-field"><span class="preview-label">Security code</span><span class="preview-ghost">CVC</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="preview-payment-method"><span class="preview-radio" aria-hidden="true"></span><strong>Klarna</strong><span class="preview-method-tag">Subject to eligibility</span></div>
+      <div class="preview-payment-method"><span class="preview-radio" aria-hidden="true"></span><strong>Revolut Pay</strong><span class="preview-method-tag">When available</span></div>
+      <p class="preview-smallprint">The live Stripe form will show only payment methods available for each customer.</p>
+    </section>
+    <section class="form-section" aria-labelledby="wallet-title">
+      <h2 id="wallet-title">More ways to pay</h2>
+      <p class="helper">Available wallets will be shown at the bottom on supported devices.</p>
+      <div class="preview-wallet" aria-label="Illustrative Apple Pay button">Apple Pay <span class="preview-method-tag">Device-dependent</span></div>
+      <p class="preview-smallprint">Apple Pay availability depends on the browser, device, wallet and Stripe domain setup.</p>
+    </section>
+    <section class="form-section preview-live-link" aria-labelledby="continue-title">
+      <h2 id="continue-title">Ready to purchase?</h2>
+      <p>This is a visual demonstration only. Continue through the existing secure Stripe checkout until the new payment integration is activated.</p>
+      <a class="pay-btn preview-continue" id="existing-checkout-link" href="https://buy.stripe.com/4gMbJ04fhbq80cB1OZfQI00" rel="noopener">Continue to current secure checkout</a>
+    </section>
+  </section>
+  <aside class="summary" aria-labelledby="summary-title">
+    <h2 id="summary-title">Order summary</h2>
+    <div class="product">
+      <img id="product-image" src="/assets/envirolizer-1kg.png" width="92" height="92" alt="Envirolizer 1 kg bag">
+      <div><strong id="product-name">Envirolizer 1 kg bag</strong><p>Quantity: 1</p></div>
+    </div>
+    <div class="summary-row"><span>Product (VAT included)</span><strong id="subtotal">£25.44</strong></div>
+    <div class="summary-row"><span>Postage and packing</span><strong>Included</strong></div>
+    <div class="summary-row total"><span>Total</span><strong id="total">£25.44</strong></div>
+    <p class="summary-note">Sold by CTI EXPO LTD. This page is a non-interactive design preview. Real purchases remain securely processed by Stripe.</p>
+  </aside>
+</main>
+<footer class="footer">
+  <div class="page-width"><span>© 2026 CTI EXPO LTD</span><span><a href="/consumer-terms.html">Consumer Terms</a> · <a href="mailto:info@commonwealthcentral.co.uk">Contact us</a></span></div>
+  <div class="page-width brand-attribution">Payment-network icon artwork by <a href="https://github.com/datatrans/payment-logos" target="_blank" rel="noopener noreferrer">Datatrans</a> (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>). Network trademarks belong to their respective owners.</div>
+</footer>
+</body>
+</html>

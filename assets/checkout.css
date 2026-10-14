@@ -25,3 +25,26 @@ a{color:#0e4a2f}.page-width{width:min(1100px,calc(100% - 40px));margin-inline:au
 .fallback-wrap{padding:14px 16px;margin:-10px 0 20px;border-radius:8px;border:1px solid #e3c794;background:#fff6df;font-size:14px}
 .fallback-wrap a{font-weight:800}
 .wallet-error{margin:14px 0 0;color:#9c2119;background:#ffe6e2;padding:12px;border-radius:7px;font-size:14px}
+
+/* Non-transactional checkout preview. All illustrated fields are plain text, not inputs. */
+.preview-notice{background:#fff1cd;color:#513c10;border:1px solid #e7c978}
+.preview-field{padding:10px 14px;min-height:62px;border-radius:7px;border:1px solid #d6dcd4;background:#fff;margin-bottom:11px}
+.preview-label{display:block;color:#4f6255;font-size:12px;font-weight:700;margin-bottom:5px}
+.preview-ghost{display:block;color:#89978c;font-size:15px}
+.preview-fields-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.preview-payment-method{display:flex;gap:12px;align-items:center;min-height:64px;padding:14px 18px;border:1px solid #d7dfd5;border-radius:9px;background:#fff;margin-top:12px;flex-wrap:wrap}
+.preview-payment-method-selected{display:block;border-color:#0e4a2f;box-shadow:0 0 0 1px #0e4a2f}
+.preview-payment-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.preview-radio{width:18px;height:18px;border:2px solid #a5afa8;border-radius:50%;flex-shrink:0}
+.preview-radio-selected{border-color:#0e4a2f;position:relative}
+.preview-radio-selected::after{content:"";position:absolute;inset:3px;background:#0e4a2f;border-radius:50%}
+.preview-tiny-label,.preview-method-tag{margin-left:auto;color:#5f7662;font-size:12px;font-weight:600}
+.preview-payment-body{margin:17px 0 0;padding:0}
+.preview-payment-body .preview-fields-grid .preview-field{margin-bottom:0}
+.preview-wallet{display:flex;align-items:center;justify-content:center;gap:10px;border-radius:8px;min-height:56px;border:1px solid #2b322d;background:#171c19;color:#fff;font-size:19px;font-weight:800}
+.preview-wallet .preview-method-tag{color:#d6e6dc;margin-left:0;font-size:12px}
+.preview-smallprint{margin:12px 0 0;color:#657367;font-size:13px}
+.preview-live-link p{font-size:15px;color:#4c5a50}
+.preview-continue{display:flex;text-decoration:none;align-items:center;justify-content:center;padding:14px;text-align:center}
+.preview-continue:hover{background:#0a3b25;color:#fff}
+@media(max-width:450px){.preview-fields-grid{grid-template-columns:1fr;gap:0}.preview-wallet{flex-wrap:wrap}.preview-payment-method{padding:12px}}

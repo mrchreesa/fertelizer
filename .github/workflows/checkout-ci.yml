@@ -18,4 +18,4 @@ jobs:
       - name: Test prices, payment gating and checkout markup
         run: node --test tests/*.test.js
       - name: Validate browser-side syntax
-        run: node --check assets/checkout.js && node --check assets/site.js
+        run: node --check assets/checkout.js && node --check assets/site.js && node --check assets/checkout-preview.js
