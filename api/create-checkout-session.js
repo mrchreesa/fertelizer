@@ -25,8 +25,8 @@ module.exports = async function createCheckoutSession(req, res) {
 
   const secret = process.env.STRIPE_SECRET_KEY || "";
   const publishableKey = process.env.STRIPE_PUBLISHABLE_KEY || "";
-  const isLive = secret.startsWith("sk_live_");
-  const isTest = secret.startsWith("sk_test_");
+  const isLive = /^(?:sk|rk)_live_/.test(secret);
+  const isTest = /^(?:sk|rk)_test_/.test(secret);
 
   // Never permit test payments on the public production domain, or live payments in previews.
   // The live gate only opens after merchant sign-off and a signed webhook is configured.

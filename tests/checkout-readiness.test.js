@@ -54,6 +54,14 @@ test("enables only after all production prerequisites are explicitly configured"
     assert.equal(callReadiness("POST").httpStatus, 405);
   });
 });
+test("restricted live keys are accepted while restricted test keys cannot activate production", () => {
+  withEnvironment({ ...full, STRIPE_SECRET_KEY: "rk_live_unit_test_only" }, () => {
+    assert.equal(callReadiness().data.enabled, true);
+  });
+  withEnvironment({ ...full, STRIPE_SECRET_KEY: "rk_test_unit_test_only" }, () => {
+    assert.equal(callReadiness().data.enabled, false);
+  });
+});
 test("public buy buttons still point at working hosted payment links by default", () => {
   const page = fs.readFileSync(path.join(__dirname, "../index.html"), "utf8");
   assert.equal((page.match(/https:\/\/buy\.stripe\.com\/4gMbJ04fhbq80cB1OZfQI00/g) || []).length, 2);

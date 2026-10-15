@@ -15,6 +15,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Install checkout dependencies
+        run: npm ci --ignore-scripts
       - name: Test prices, payment gating and checkout markup
         run: node --test tests/*.test.js
       - name: Validate browser-side syntax

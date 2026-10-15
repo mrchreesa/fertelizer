@@ -2,11 +2,13 @@
 
 ## Current rollout state
 
-The custom checkout is built on a feature branch. Existing public buy buttons continue to target their original, working Stripe-hosted Payment Links by default.
+The custom checkout is deployed from `main`. Existing public buy buttons target their original Stripe-hosted Payment Links until the production readiness gates are enabled.
 
-When merged, the storefront will check `/api/checkout-readiness`; only when all production activation flags and secrets are present will the **four** 1 kg / 20 kg buy buttons switch to `/checkout?sku=1kg` or `/checkout?sku=20kg`. If the readiness endpoint is unavailable or returns false, old Payment Links stay in use.
+The storefront checks `/api/checkout-readiness`; only when all production activation flags and secrets are present do the **four** 1 kg / 20 kg buy buttons switch to `/checkout?sku=1kg` or `/checkout?sku=20kg`. If the readiness endpoint is unavailable or returns false, old Payment Links stay in use.
 
-Direct visitors to `/checkout` can also use a fallback to the existing Stripe Payment Link if the custom checkout cannot initialise. No test-mode payments are permitted in Vercel Production.
+Direct visitors to `/checkout` can also use a fallback to the existing Stripe Payment Link if the custom checkout cannot initialise. The normal checkout never accepts test payments in Production. The separate `/checkout-test` route requires test keys and an explicit `CHECKOUT_PUBLIC_TEST_ENABLED=true`; disable that flag when activating live checkout.
+
+The 1 kg sandbox payment succeeded on 15 October 2026 for £25.44, with customer email and UK shipping details recorded in Stripe. This verified payment processing, not email delivery or a live-money transaction.
 
 ## Visual layout
 
@@ -32,10 +34,10 @@ Direct visitors to `/checkout` can also use a fallback to the existing Stripe Pa
 
 Do **not** turn on the new checkout for buyers until each item is complete:
 1. Set Vercel **Production** environment variables:
-   - `STRIPE_SECRET_KEY=sk_live_...` and `STRIPE_PUBLISHABLE_KEY=pk_live_...` for Commonwealth Central's live Stripe account.
-   - `STRIPE_WEBHOOK_SECRET=whsec_...` for the production endpoint `https://commonwealthcentral.co.uk/api/stripe-webhook`.
-   - `CHECKOUT_SITE_URL=https://commonwealthcentral.co.uk`.
-2. Configure a robust fulfilment process for paid orders. The included webhook validates signatures and logs payment/session IDs **only**. It does not save orders in a dedicated database or send fulfilment emails. If operating with manual fulfilment, an authorised operator must reliably review paid Checkout Sessions and shipping addresses in Stripe, ensure no order is missed or shipped twice, and contact buyers as required. For automated fulfilment, integrate an idempotent order store, notifications and retry monitoring.
+   - `STRIPE_SECRET_KEY=rk_live_...` with Checkout Sessions write/read permission and `STRIPE_PUBLISHABLE_KEY=pk_live_...` for Commonwealth Central's live Stripe account. Standard `sk_live_...` keys are also supported.
+   - `STRIPE_WEBHOOK_SECRET=whsec_...` for the production endpoint `https://www.commonwealthcentral.co.uk/api/stripe-webhook`.
+   - `CHECKOUT_SITE_URL=https://www.commonwealthcentral.co.uk`.
+2. Orders use manual fulfilment from the Stripe Dashboard. Review successful payments and shipping addresses, record dispatched orders, and reconcile the Dashboard regularly so missed emails do not cause missed orders. The webhook validates signatures and logs payment/session IDs **only**; it does not send order emails or dispatch products. For automated fulfilment, integrate an idempotent order store, notifications and retry monitoring.
 3. Verify account receipt configuration, delivery policy, taxes, refunds, chargebacks, and the legal/consumer requirements. Register the website domain for Apple Pay in Stripe and test Safari/wallet.
 4. After the merchant confirms the entire flow is safe and ready, set both **Production**-only flags:
    - `CHECKOUT_FULFILLMENT_READY=true`

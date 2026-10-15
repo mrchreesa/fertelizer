@@ -11,7 +11,7 @@ module.exports = function checkoutReadiness(req, res) {
   const enabled = process.env.VERCEL_ENV === "production" &&
     process.env.CHECKOUT_ENABLE_LIVE === "true" &&
     process.env.CHECKOUT_FULFILLMENT_READY === "true" &&
-    /^sk_live_/.test(process.env.STRIPE_SECRET_KEY || "") &&
+    /^(?:sk|rk)_live_/.test(process.env.STRIPE_SECRET_KEY || "") &&
     /^pk_live_/.test(process.env.STRIPE_PUBLISHABLE_KEY || "") &&
     /^whsec_/.test(process.env.STRIPE_WEBHOOK_SECRET || "");
   return res.status(200).json({ enabled });

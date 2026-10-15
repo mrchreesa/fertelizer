@@ -14,7 +14,7 @@ module.exports = async function sessionStatus(req, res) {
   }
 
   const secret = process.env.STRIPE_SECRET_KEY || "";
-  if (!(secret.startsWith("sk_test_") || secret.startsWith("sk_live_"))) {
+  if (!/^(?:sk|rk)_(?:test|live)_/.test(secret)) {
     return res.status(503).json({ error: "Checkout is not configured" });
   }
 
