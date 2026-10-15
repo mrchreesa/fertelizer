@@ -11,9 +11,9 @@ const preview = fs.readFileSync(path.join(root, "checkout-preview.html"), "utf8"
 const stripeClient = fs.readFileSync(path.join(root, "assets/checkout.js"), "utf8");
 const stripeServer = fs.readFileSync(path.join(root, "api/create-checkout-session.js"), "utf8");
 
-test("UK shipping collection is mandated by Checkout Session and contact phone is enabled", () => {
+test("UK shipping collection is mandated without requiring an uncollected phone number", () => {
   assert.match(stripeServer, /shipping_address_collection:\s*\{\s*allowed_countries:\s*\[\s*"GB"\s*\]\s*\}/);
-  assert.match(stripeServer, /phone_number_collection:\s*\{\s*enabled:\s*true\s*\}/);
+  assert.doesNotMatch(stripeServer, /phone_number_collection:\s*\{\s*enabled:\s*true\s*\}/);
   assert.match(stripeServer, /billing_address_collection:\s*"auto"/);
 });
 

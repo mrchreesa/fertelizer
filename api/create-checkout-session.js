@@ -58,7 +58,6 @@ module.exports = async function createCheckoutSession(req, res) {
       mode: "payment",
       line_items: [makeLineItem(body.sku, isLive)],
       shipping_address_collection: { allowed_countries: ["GB"] },
-      phone_number_collection: { enabled: true },
       billing_address_collection: "auto",
       return_url: getSiteOrigin() + "/checkout-result?session_id={CHECKOUT_SESSION_ID}",
       metadata: { site: "commonwealthcentral", sku: body.sku, checkout: "card_first" },

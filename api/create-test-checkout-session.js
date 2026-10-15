@@ -44,7 +44,6 @@ module.exports = async function createPublicTestSession(req, res) {
       mode: "payment",
       line_items: [makeLineItem(sku, false)],
       shipping_address_collection: { allowed_countries: ["GB"] },
-      phone_number_collection: { enabled: true },
       billing_address_collection: "auto",
       return_url: "https://www.commonwealthcentral.co.uk/checkout-test-result?session_id={CHECKOUT_SESSION_ID}",
       metadata: { site: "commonwealthcentral", checkout: "public_sandbox", sku },

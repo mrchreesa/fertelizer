@@ -118,6 +118,8 @@ test("test endpoint never trusts browser amounts and only accepts two bag SKUs",
     assert.equal(res.response.amountTotal,expected);
     assert.equal(capture.params.line_items[0].price_data.unit_amount,expected);
     assert.equal(capture.params.shipping_address_collection.allowed_countries[0],"GB");
+    assert.notEqual(capture.params.phone_number_collection?.enabled, true,
+      "Do not require a phone number that the approved form does not collect");
     assert.equal(capture.params.metadata.checkout,"public_sandbox");
     assert.match(capture.params.return_url,/^https:\/\/www\.commonwealthcentral\.co\.uk\/checkout-test-result\?/);
     assert.equal(capture.version,"2026-03-25.dahlia");
