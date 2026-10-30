@@ -24,6 +24,21 @@
   function formatGBP(pence) {
     return new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP" }).format(pence / 100);
   }
+  async function withCheckoutTimeout(operation) {
+    let timer;
+    try {
+      return await Promise.race([
+        operation,
+        new Promise((_, reject) => {
+          timer = setTimeout(() => reject(new Error(
+            "The payment form is taking longer than expected. Continue with Stripe below."
+          )), 20000);
+        })
+      ]);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
 
   async function start() {
     if (!Object.prototype.hasOwnProperty.call(catalogue, sku)) {
@@ -40,12 +55,12 @@
     }
 
     try {
-      const response = await fetch("/api/create-checkout-session", {
+      const response = await withCheckoutTimeout(fetch("/api/create-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         cache: "no-store",
         body: JSON.stringify({ sku })
-      });
+      }));
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Unable to prepare checkout.");
       if (!data.clientSecret || !data.publishableKey || !Number.isInteger(data.amountTotal)) {
@@ -114,7 +129,7 @@
       });
       expressElement.mount("#express-element");
 
-      const loaded = await checkout.loadActions();
+      const loaded = await withCheckoutTimeout(checkout.loadActions());
       if (loaded.type === "error") throw new Error(loaded.error.message || "Checkout failed to load.");
       status.hidden = true;
       $("checkout-fields").hidden = false;
