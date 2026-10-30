@@ -170,10 +170,6 @@
   .btn-quote { background: var(--canopy); border-color: var(--canopy); color: var(--white); }
   .link { font-weight: 700; text-decoration: underline; text-decoration-color: var(--leaf); text-decoration-thickness: 3px; text-underline-offset: 4px; }
 
-  /* delivery information awaiting confirmation */
-  .tbc { display: inline-flex; align-items: center; gap: 6px; border: 1.5px dashed var(--ink); background: var(--white); border-radius: 999px; padding: 1px 10px; font-size: .78em; font-weight: 700; line-height: 1.5; vertical-align: 1px; }
-  .tbc::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); border: 1.5px solid var(--ink); }
-
   .ring { height: 16px; background: var(--bonnet); border-top: 4px solid var(--gold); border-bottom: 4px solid var(--gold); }
 
   /* ---------- header ---------- */
@@ -252,6 +248,18 @@
   .coverage h3 { font-size: 25px; margin-bottom: 10px; }
   .coverage p { font-size: 17px; }
   .delivery-note { margin-top: 16px; font-size: 15px; }
+
+  /* ---------- supplied 1 kg packaging ---------- */
+  .packaging { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(24px, 4vw, 48px); align-items: center; margin-top: 40px; padding-top: 32px; border-top: 2px solid var(--canopy); }
+  .packaging figure { margin: 0; min-width: 0; }
+  .packaging img { width: 100%; aspect-ratio: 4 / 3; border: 2px solid var(--ink); border-radius: 6px; }
+  .packaging figcaption { margin-top: 10px; font-size: 15px; }
+  .packaging h3 { font-size: clamp(26px, 3vw, 36px); margin-bottom: 18px; }
+  .packaging p + p { margin-top: 16px; }
+  .packaging a { overflow-wrap: anywhere; text-underline-offset: 4px; cursor: pointer; }
+  .packaging a:hover { text-decoration-thickness: 3px; }
+  .packaging a:active { color: var(--canopy); }
+  @media (max-width: 700px) { .packaging { grid-template-columns: 1fr; } }
 
   /* ---------- benefits ---------- */
   .benefits-sec { background: var(--cream-deep); }
@@ -638,8 +646,19 @@
         <div><h3>20 kg bag coverage</h3><p>Approximately <strong>10 hectares / 5 football pitches</strong>.</p></div>
         <p>Add <strong>1 teaspoon (5&nbsp;g) of Envirolizer to 1 litre of water</strong>. Or, <strong>2–2.5Kg per hectare.</strong> Lightly spray over shoots and leaves during the growth period.</p>
       </div>
-      <p class="delivery-note"><span class="tbc">Delivery details to confirm</span> Delivery areas, timings and arrangements for multiple bags are to be confirmed. <a href="#delivery-question">Delivery questions</a></p>
       <p class="delivery-note">Bag payments are taken securely through Stripe. For order questions, <a href="#contact">call or email us</a>. Read our <a href="/consumer-terms.html">Consumer Terms</a>.</p>
+
+      <div class="packaging" id="our-bags">
+        <figure>
+          <img src="assets/envirolizer-1kg-bags.jpg" width="2048" height="1536" loading="lazy" alt="Three Dr. McK’s Organics Envirolizer 1 kg bags with the website QR code printed on the labels">
+          <figcaption><a href="assets/envirolizer-1kg-bags.jpg">View the full-size bag photo</a></figcaption>
+        </figure>
+        <div>
+          <h3>Our 1 kg bags</h3>
+          <p>Scan the QR code on your bag with your phone’s camera to return to this website. Then choose your bag size above to order online.</p>
+          <p>For orders and enquiries, use <a href="mailto:support@commonwealthcentral.co.uk">support@commonwealthcentral.co.uk</a>.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -757,7 +776,7 @@
         </details>
         <details id="delivery-question" open>
           <summary>How long does delivery take, and where do you deliver?</summary>
-          <div class="a"><p><span class="tbc">Delivery details to confirm</span></p><p>Delivery areas, dispatch and arrival times, and arrangements for orders of multiple bags are to be confirmed. Please <a href="#contact">contact us</a> for delivery information.</p><p>Pallet and container delivery costs and timing are confirmed with your freight quote before payment.</p></div>
+          <div class="a"><p>For delivery areas, dispatch and arrival times, or orders of multiple bags, please <a href="#contact">contact us</a>.</p><p>Pallet and container delivery costs and timing are confirmed with your freight quote before payment.</p></div>
         </details>
         <details>
           <summary>Which crops can I use it on?</summary>
@@ -769,7 +788,7 @@
         </details>
         <details>
           <summary>How do I pay, and what do the bag prices include?</summary>
-          <div class="a"><p>The 1&nbsp;kg and 20&nbsp;kg bags are paid for online. The listed prices of £25.44 and £305.69 include VAT, postage and packing. Delivery areas and arrangements for multiple bags are still to be confirmed.</p><p>Pallets and containers require a freight quote before payment.</p></div>
+          <div class="a"><p>The 1&nbsp;kg and 20&nbsp;kg bags are paid for online. The listed prices of £25.44 and £305.69 include VAT, postage and packing.</p><p>Pallets and containers require a freight quote before payment.</p></div>
         </details>
         <details>
           <summary>How should I store it?</summary>
